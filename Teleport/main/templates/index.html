@@ -11,7 +11,7 @@
             TELEPORT
         </label>
         {% for file in files %}
-        <a href="/static/files/{{ file.0 }}" download="{{ file.1 }}">
+        <a href="/static/files/{{ file.0 }}/{{ file.1 }}" download>
             {{ file.1 }}
             <div>{{ file.2 }}</div>
             <div>{{ file.3 }}</div>

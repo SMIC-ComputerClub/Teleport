@@ -60,8 +60,8 @@ a div{
     font-size: 40px;
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1080px) {
     a{
-        width: 80%;
+        width: calc(100% - 80px);
     }
 }

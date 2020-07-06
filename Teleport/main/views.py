@@ -12,7 +12,8 @@ def index(request):
         os.mkdir(date)
         for i in range(len(request.FILES)):
             if len(request.FILES) == 1:
-                file_name = f'main/static/files/{date} {list(request.FILES)[i]}'
+                os.mkdir(f'main/static/files/{date} {list(request.FILES)[i]}/')
+                file_name = f'main/static/files/{date} {list(request.FILES)[i]}/{list(request.FILES)[i]}'
             else:
                 file_name = f'{date}/{list(request.FILES)[i]}'
             with open(file_name, 'wb+') as destination:
@@ -22,7 +23,8 @@ def index(request):
             with zipfile.ZipFile(f'{date}.zip', 'w') as zip_file:
                 for file in request.FILES:
                     zip_file.write(f'{date}/{file}')
-            shutil.move(f'{date}.zip', f'main/static/files/{date}.zip')
+            os.mkdir(f'main/static/files/{date}.zip/')
+            shutil.move(f'{date}.zip', f'main/static/files/{date}.zip/{date}.zip')
         shutil.rmtree(date)
 
     files = []
@@ -35,7 +37,7 @@ def index(request):
             else:
                 name = file_name
             date = file_name[:11] + file_name[11:19].replace('-', ':')
-            size = os.path.getsize(f'main/static/files/{file_name}')
+            size = os.path.getsize(f'main/static/files/{file_name}/{name}')
             for unit in ['B', 'KB', 'MB', 'GB']:
                 if size < 1000:
                     size = f'{round(size, 2)} {unit}'
